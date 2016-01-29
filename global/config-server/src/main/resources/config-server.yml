@@ -1,0 +1,21 @@
+spring:  
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native: 
+          searchLocations: ${CONFIG_FILE_LOC:classpath:cloud-configs/}
+          
+  application:
+     name: config-service
+
+# Discovery Server Access
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${app.cloud.defaultZone}
+
+# HTTP Server
+server:
+  port: ${PORT:8888}   # HTTP (Tomcat) port

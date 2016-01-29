@@ -1,0 +1,14 @@
+# Spring properties
+spring:
+  application:
+     name: account-service
+
+# Discovery Server Access
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${app.cloud.defaultZone}
+
+# HTTP Server
+server:
+  port: ${PORT:0}   # HTTP (Tomcat) port
