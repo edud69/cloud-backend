@@ -1,6 +1,6 @@
-# Introduction
-
 [![CircleCI](https://circleci.com/gh/edud69/cloud-backend/tree/master.svg?style=svg)](https://circleci.com/gh/edud69/cloud-backend/tree/master)
+
+# Introduction
 
 This project is a cloud infrastructure based on the [spring-cloud](https://github.com/spring-cloud) projects.
 
