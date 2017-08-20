@@ -26,7 +26,12 @@ Please see the [ISSUES](https://github.com/edud69/cloud-backend/blob/master/.git
 Coding tips:
 - [Adding a new micro-service](#adding-a-new micro-service)
 - [Running the migration utility](#running-the-migration-utility)
-
+- [Websockets](#websockets)
+  + [Adding websocket support](#adding-websocket-support)
+  + [Monitoring websocket client connections](#monitoring-websocket-client-connections)
+  + [Destinations and mapping to queues](#destinations-and-mapping-to-queues)
+  + [Send a message to a queue or topic from backend](#send-a-message-to-a-queue-or-topic-from-backend)
+  
 Related repositories:
 - [Frontend Sources](https://github.com/edud69/cloud-angular2-frontend)
 
@@ -99,6 +104,11 @@ Note: Emma is installed by default on IntelliJ IDEA
     * Configuration server
     * Gateway server
     * Authorization server
+    
+### Formatter file / checkstyle file and other configuration files for dev ###
+
+-Look at the `config-files` project `/dev-configs` folder for configuration files (sql init script, checkstyle file, maven file, etc.).
+
 
 # Environment
 ## Arguments that can be defined provided to .jar (JVM arg -DtheProperty) ##
@@ -115,6 +125,7 @@ spring.profiles.active = activates configuration files for a specific profile (d
 ### Arguments for Config-Server ###
 
 `CONFIG_FILES_ROOT_LOC` = location of config server files (classpath: ..., file:///..., etc.) (can only be defined on the config-server)
+
 
 # Docker
 
@@ -210,26 +221,14 @@ The project is supports Docker containers. You can launch the whole project by d
 - Provide the following arguments `mainDbUsername mainDbPassword dbDataEncryptionKey (optional: devModeEnabled)` (by default for dev use: `postgres postgres ddfds283nsdjahs (optional : devModeEnabled -> this option will execute dev scripts to setup dev env)`).
 * Here the value `ddfds283nsdjahs` must `match the app.cloud.security.database.encryption.key` from the `application-dev.properties` file (found in config-giles/src/main/resources/cloud-configs/).
 
-# Database structure
--Each micro-services that needs SQL should be structured as followed:
+# Websockets #
+## Adding websocket support ##
+Add a reference to *common-websocket*.
 
-1. A database for the master tenant and all shared configurations (should be *servicename_master*).
-
-2. A database for tenant creation. It uses this template database when creating a new tenant (should be *servicename_template*).
-
-3. Several databases for tenant schema (tenant data), each of these database can contain a maximum amount of tenants (they are named *servicename_slaveXXX).
-
-# Dev environment
-
--Look at the config-files project /dev-configs folder for configuration files (sql init script, checkstyle file, maven file, etc.).
-
-# Websocket backend #
-Add project *common-websocket*
-
-## Monitoring websocket client connection / disconnects ##
+## Monitoring websocket client connections ##
 Create a bean that implments *WebsocketSessionListener* class from *common-websocket* and events will be automatically triggered inside your class
 
-## Destination construction ##
+## Destinations and mapping to queues ##
 When subscribing or sending message to a MQ destination the following prefix rules are applied:
 
 - Sending a message that are destination-prefixed with */app* on client-side will go through server otherwise it will be forwarded directly to message broker.
@@ -271,6 +270,17 @@ When subscribing or sending message to a MQ destination the following prefix rul
     final StompMessageDestination destination = new StompMessageDestination(CHAT_TOPIC_DESTINATION_PREFIX.getDestination() + "-" + chatMsg.getChannelName());
     stompMessagingTemplate.send(destination, message);
 ```
+
+
+
+# Database structure
+-Each micro-services that needs SQL should be structured as followed:
+
+1. A database for the master tenant and all shared configurations (should be *servicename_master*).
+
+2. A database for tenant creation. It uses this template database when creating a new tenant (should be *servicename_template*).
+
+3. Several databases for tenant schema (tenant data), each of these database can contain a maximum amount of tenants (they are named *servicename_slaveXXX).
 
 # Creating a rest endpoint #
 1. Create a *@RestController* and extend *ManagedRestEndpoint* class.
