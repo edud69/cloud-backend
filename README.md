@@ -12,13 +12,22 @@ Please see the [CONTRIBUTING](https://github.com/edud69/cloud-backend/blob/maste
 
 Please see the [ISSUES](https://github.com/edud69/cloud-backend/blob/master/.github/ISSUE_TEMPLATE.md) file for guidelines.
 
+# Table of Contents
+
+- [Introduction](#introduction)
+- [Contributing](#contributing)
+- [Submitting an issue or feature request](#submitting-an-issue-or-feature-request)
+- [How to start](#how-to-start)
+
+Related repositories:
+- [Frontend Sources](https://github.com/edud69/cloud-angular2-frontend)
+
 # How to start
 ## Install Java Cryptography Extension (JCE) Unlimited Strength (used for OAuth2 Social Login strong encryption)
 1. Download the Java JCE from oracle : [Oracle](http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html).
 2. Extract the files in *JDK_HOME/jre/lib/security* or *JRE_HOME/lib/security*.
 
 ## Setting up the Project in an IDE ##
-
 ### In Eclipse ###
 
 Recommended plugins to install:
