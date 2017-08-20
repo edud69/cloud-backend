@@ -18,6 +18,14 @@ Please see the [ISSUES](https://github.com/edud69/cloud-backend/blob/master/.git
 - [Contributing](#contributing)
 - [Submitting an issue or feature request](#submitting-an-issue-or-feature-request)
 - [How to start](#how-to-start)
+- [Environment](#environment)
+- [Docker](#docker)
+  + [Debugging a service locally with a Docker setup running](#debugging-a-service-locally-with-a-docker-setup-running)
+  + [Building production images](#building-production-images)
+  
+Coding tips:
+- [Adding a new micro-service](#adding-a-new micro-service)
+- [Running the migration utility](#running-the-migration-utility)
 
 Related repositories:
 - [Frontend Sources](https://github.com/edud69/cloud-angular2-frontend)
@@ -92,30 +100,25 @@ Note: Emma is installed by default on IntelliJ IDEA
     * Gateway server
     * Authorization server
 
-# Properties to be defined as args before launching the servers (.JAR)  (JVM arg -DtheProperty)
+# Environment
+## Arguments that can be defined provided to .jar (JVM arg -DtheProperty) ##
 
 - Use `--` as a prefix in front of any JVM argument instead of '-D', spring application will convert it to an argument. Ex: `--server.port=9000` or `--PORT=9000`
 - To launch an application on linux, use the following command: 'java -Djava.security.egd=file:/dev/./urandom -jar an-application-server.jar [--server.port=2222 --anotherArg=anothervalue ...]
 
-### For all servers ###
+### Arguments for all instances ###
 
 spring.profiles.active = activates configuration files for a specific profile (default : dev)
-
 `REGISTRY_SERVER_URI` = uri of the registry server (default : http://localhost:1111/eureka/).
-
-
-### Micro-Services servers Properties ###
-
 `PORT` = the server port (Can be defined on any server).
 
-
-### Config-Server Properties ###
+### Arguments for Config-Server ###
 
 `CONFIG_FILES_ROOT_LOC` = location of config server files (classpath: ..., file:///..., etc.) (can only be defined on the config-server)
 
-
 # Docker
-The project is configured supports Docker containers. You can launch the whole project by doing so:
+
+The project is supports Docker containers. You can launch the whole project by doing so:
 1) Install Docker on your host machine
 
 2) Increase the Docker VM memory and CPU (for windows right-click on Docker icon in the tray area and click settings, then go on Advanced).
@@ -130,7 +133,7 @@ The project is configured supports Docker containers. You can launch the whole p
 - Sql management : http://localhost:8081
 - Rest-api : http://localhost:8080
 
-To debug a micro-service while other instances are running in Docker, you need to do the following steps:
+## Debugging a service locally with a Docker setup running ##
 
 1) Open the host file (Windows is C:\Windows\System32\drivers\etc\hosts)
 
@@ -148,7 +151,7 @@ To debug a micro-service while other instances are running in Docker, you need t
    The first one is `eureka.instance.preferIpAddress: true` and the second one is `eureka.instance.ipAddress: THE_IP_OF_YOUR_LOCALHOST_MACHING_ON_THE_DOCKER_BRIDGE_INTERFACE`. Docker by default creates a network bridge interface between the containers and your host,
    adding the ip to the configuration file will provide the registry server the good ip to contact from other services.
    
-Building production images:
+## Building production images ##
 
 1) In the root of the source run `docker-compose --build`
 
@@ -174,16 +177,6 @@ Building production images:
 7) On the production machine run `docker-compose -f /path/to/docker-compose.prod.yml up -d`
     
 
-
-# Useful links (without Docker)
-
-- Service registries : http(s)://the-service-registry-server:port/ (default : http://localhost:1111/)
-- Rest-Api URL: (defaults on http://localhost:8080/)
-- Rest-Api Hystrix dashboard: http(s)://the-rest-api-server:port/hystrix (default : http://localhost:8080/hystrix), to monitor queries on the rest-api use this link in the dashboard http(s)://the-rest-api-server:port/hystrix.stream
-- Monitor servers status: http(s)://a-local-server:port/health
-- Administrative panel: http://localhost:14900/ or http://the-rest-api-server:theport/
-
-
 # Adding a new micro-service
 
 1) Create projects
@@ -204,9 +197,18 @@ Building production images:
 
 9) Implement and give *@Component* and *@Primary* (spring-managed) annotation to the a class on your new project (YOURSERVICE-server project) that extends -> *TenantInitializerDefault* class and *TenantDestroyerDefault* class.
 
-10) Add the new Dockerfile
+10) Add the new Dockerfile to the project.
 
-11) Configure the docker-compose.yml file with the new project.
+11) Configure the `docker-compose.yml` file with the new project.
+
+12) Configure the `docker-compose.prod.yml` file.
+
+
+# Running the migration utility
+
+- Create a simple java application launcher on the main of the Launcher class of migration-utility project.
+- Provide the following arguments `mainDbUsername mainDbPassword dbDataEncryptionKey (optional: devModeEnabled)` (by default for dev use: `postgres postgres ddfds283nsdjahs (optional : devModeEnabled -> this option will execute dev scripts to setup dev env)`).
+* Here the value `ddfds283nsdjahs` must `match the app.cloud.security.database.encryption.key` from the `application-dev.properties` file (found in config-giles/src/main/resources/cloud-configs/).
 
 # Database structure
 -Each micro-services that needs SQL should be structured as followed:
@@ -216,14 +218,6 @@ Building production images:
 2. A database for tenant creation. It uses this template database when creating a new tenant (should be *servicename_template*).
 
 3. Several databases for tenant schema (tenant data), each of these database can contain a maximum amount of tenants (they are named *servicename_slaveXXX).
-
-
-
-# Running the migration utility
-
-- Create a simple java application launcher on the main of the Launcher class of migration-utility project.
-- Provide the following arguments `mainDbUsername mainDbPassword dbDataEncryptionKey (optional: devModeEnabled)` (by default for dev use: `postgres postgres ddfds283nsdjahs (optional : devModeEnabled -> this option will execute dev scripts to setup dev env)`).
-
 
 # Dev environment
 
