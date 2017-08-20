@@ -31,6 +31,9 @@ Coding tips:
   + [Monitoring websocket client connections](#monitoring-websocket-client-connections)
   + [Destinations and mapping to queues](#destinations-and-mapping-to-queues)
   + [Send a message to a queue or topic from backend](#send-a-message-to-a-queue-or-topic-from-backend)
+- [Creating a rest endpoint](#creating-a-rest-endpoint)
+- [JPA and multitenancy support](#jpa-and-multitenancy-support)
+
   
 Related repositories:
 - [Frontend Sources](https://github.com/edud69/cloud-angular2-frontend)
@@ -265,26 +268,14 @@ When subscribing or sending message to a MQ destination the following prefix rul
     stompMessagingTemplate.send(destination, message);
 ```
 
-
-
-# Database structure
--Each micro-services that needs SQL should be structured as followed:
-
-1. A database for the master tenant and all shared configurations (should be *servicename_master*).
-
-2. A database for tenant creation. It uses this template database when creating a new tenant (should be *servicename_template*).
-
-3. Several databases for tenant schema (tenant data), each of these database can contain a maximum amount of tenants (they are named *servicename_slaveXXX).
-
-# Creating a rest endpoint #
+# Creating a rest endpoint
 1. Create a *@RestController* and extend *ManagedRestEndpoint* class.
 2. Make sure you call the method *buildResponse()* from *ManagedRestEndpoint* if you want to send a message to the client.
 3. You should always send an object that extends *TransportMessage* (*io.theshire.common.utils.transport.message*).
+4. *buildResponse()* will handle the case where a *null* is provided, it will return a *HTTP 404*.
   
 
-
-# JPA #
-----------------------------------------------------------------------
+# JPA and multitenancy support
 
 -To add a multi-tenant supported JPA repository, make sure to add the suffix *JpaRepository.java
 
@@ -365,8 +356,18 @@ spring.social.facebook.appSecret=ea3841adadc84dc26a9c1f4f2b63f86c
 
 Make sure all SQL and elasticsearch configs are up to date.
 
-# Cloud architecture overview
+# Architecture
+## Database structure ##
+-Each micro-services that needs SQL should be structured as followed:
+
+1. A database for the master tenant and all shared configurations (should be *servicename_master*).
+
+2. A database for tenant creation. It uses this template database when creating a new tenant (should be *servicename_template*).
+
+3. Several databases for tenant schema (tenant data), each of these database can contain a maximum amount of tenants (they are named *servicename_slaveXXX).
+
+## Cloud architecture overview ##
 ![backend-architecture-high-lvl.png](https://bitbucket.org/repo/bX8krX/images/3911591992-backend-architecture-high-lvl.png)
 
-# Micro-Service architecture overview
+## Micro-Service architecture overview ##
 ![backendmicroservice.png](https://bitbucket.org/repo/bX8krX/images/4215674392-backendmicroservice.png)
