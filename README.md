@@ -24,7 +24,7 @@ Please see the [ISSUES](https://github.com/edud69/cloud-backend/blob/master/.git
   + [Building production images](#building-production-images)
   
 Coding tips:
-- [Adding a new micro-service](#adding-a-new micro-service)
+- [Adding a new micro-service](#adding-a-new-micro-service)
 - [Running the migration utility](#running-the-migration-utility)
 - [Websockets](#websockets)
   + [Adding websocket support](#adding-websocket-support)
