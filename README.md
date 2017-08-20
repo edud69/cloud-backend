@@ -173,8 +173,7 @@ The project is supports Docker containers. You can launch the whole project by d
 4) Copy the file to the production machine.
 
 5) On the machine that has the source code run the following commands in a BASH window (GIT bash if on Windows) :
-```
-#!bash
+```bash
   # Delete every Docker containers
   # Must be run first because images are attached to containers
   docker rm -f $(docker ps -a -q)
@@ -239,18 +238,14 @@ When subscribing or sending message to a MQ destination the following prefix rul
 
 ## Send a message to a queue or topic from backend **
 1. Inject the stomp service.
-```
-#!java
+```java
   @Autowired
   private StompMessagingTemplate stompMessagingTemplate;
 ```
 
 2. Create a tenant-aware route (topic or queue).
 
-```
-#!java
-
- 
+```java
   private static final StompMessageDestination USER_CHAT_QUEUE_DESTINATION =
       new StompMessageDestination("/queue/tenant.?-chat");
 
@@ -261,8 +256,7 @@ When subscribing or sending message to a MQ destination the following prefix rul
 
 3. Send the message to a particular user or to a general topic.
 
-```
-#!java
+```java
     // user queue
     stompMessagingTemplate.sendToUser(username, USER_CHAT_QUEUE_DESTINATION, message);
 
@@ -294,9 +288,7 @@ When subscribing or sending message to a MQ destination the following prefix rul
 
 -To add a multi-tenant supported JPA repository, make sure to add the suffix *JpaRepository.java
 
-
-```
-#!java
+```java
 
 public interface AccountJpaRepository extends JpaSpringRepository<Account>
 ```
@@ -305,23 +297,19 @@ public interface AccountJpaRepository extends JpaSpringRepository<Account>
 -To add a single-tenant (will connect to the service default database) JPA repository, make sure to add the suffix *JpaSingleTenantRepository.java
 
 
-```
-#!java
-
+```java
 public interface UserAuthenticationJpaSingleTenantRepository extends JpaSpringRepository<UserAuthentication>
 ```
 
 -To inject an entity manager with the multitenancy suppport, do the following:
-```
-#!java
+```java
 	@PersistenceContext(unitName = JpaPersistenceUnitConstants.MULTI_TENANT_PERSISTENCE_CONTEXT)
 	private EntityManager em;
 ```
 
 
 -To inject an entity manager with the multitenancy suppport, do the following:
-```
-#!java
+```java
 	@PersistenceContext(unitName = JpaPersistenceUnitConstants.SINGLE_TENANT_PERSISTENCE_CONTEXT)
 	private EntityManager em;
 ```
