@@ -16,10 +16,31 @@
 	<name>parent</name>
 	<url>http://theshire.io/</url>
 
-	<ciManagement>
-		<system>Jenkins</system>
-		<url>https://build.theshire.io/</url>
-	</ciManagement>
+<!-- 	<ciManagement> -->
+<!-- 		<system>Jenkins</system> -->
+<!-- 		<url>https://build.theshire.io/</url> -->
+<!-- 	</ciManagement> -->
+
+<!-- 	<scm> -->
+<!-- 		<connection>scm:git:git@github.com:edud69/cloud-backend</connection> -->
+<!-- 		<developerConnection>scm:git:git@github.com:edud69/cloud-backend.git</developerConnection> -->
+<!-- 		<url>https://github.com/edud69/cloud-backend</url> -->
+<!-- 		<tag>parent-1.0.127</tag> -->
+<!-- 	</scm> -->
+
+<!-- 	<distributionManagement> -->
+<!-- 		<repository> -->
+<!-- 			<id>releases</id> -->
+<!-- 			<name>Releases Repository</name> -->
+<!-- 			<url>https://build.theshire.io:8444/nexus/repository/maven-releases/</url> -->
+<!-- 		</repository> -->
+
+<!-- 		<snapshotRepository> -->
+<!-- 			<id>snapshots</id> -->
+<!-- 			<name>Snapshots Repository</name> -->
+<!-- 			<url>https://build.theshire.io:8444/nexus/repository/maven-snapshots/</url> -->
+<!-- 		</snapshotRepository> -->
+<!-- 	</distributionManagement> -->
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -108,27 +129,6 @@
 		<module>migration-utility</module>
 		<module>config</module>
 	</modules>
-
-	<scm>
-		<connection>scm:git:git@github.com:edud69/cloud-backend</connection>
-		<developerConnection>scm:git:git@github.com:edud69/cloud-backend.git</developerConnection>
-		<url>https://github.com/edud69/cloud-backend</url>
-		<tag>parent-1.0.127</tag>
-	</scm>
-
-	<distributionManagement>
-		<repository>
-			<id>releases</id>
-			<name>Releases Repository</name>
-			<url>https://build.theshire.io:8444/nexus/repository/maven-releases/</url>
-		</repository>
-
-		<snapshotRepository>
-			<id>snapshots</id>
-			<name>Snapshots Repository</name>
-			<url>https://build.theshire.io:8444/nexus/repository/maven-snapshots/</url>
-		</snapshotRepository>
-	</distributionManagement>
 
 	<dependencyManagement>
 		<dependencies>
