@@ -331,7 +331,7 @@ public interface UserAuthenticationJpaSingleTenantRepository extends JpaSpringRe
 3. Several databases for tenant schema (tenant data), each of these database can contain a maximum amount of tenants (they are named *servicename_slaveXXX).
 
 ## Spring-cloud architecture overview ##
-![backend-architecture-high-lvl.png](https://bitbucket.org/repo/bX8krX/images/3911591992-backend-architecture-high-lvl.png)
+![backend-architecture-high-lvl.png](https://image.ibb.co/jfBQcQ/3911591992_backend_architecture_high_lvl.png)
 
 ## Micro-Service architecture overview ##
-![backendmicroservice.png](https://bitbucket.org/repo/bX8krX/images/4215674392-backendmicroservice.png)
+![backendmicroservice.png](https://image.ibb.co/bU6fBk/4215674392_backendmicroservice.png)
