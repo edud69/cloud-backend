@@ -1,20 +1,23 @@
-[![Build Status](https://build.theshire.io/buildStatus/icon?job=Backend%20Build)](https://build.theshire.io/job/Backend%20Build/)
+# Introduction
 
-# Releasing an artifact
+[![CircleCI](https://circleci.com/gh/edud69/cloud-backend/tree/master.svg?style=svg)](https://circleci.com/gh/edud69/cloud-backend/tree/master)
 
-Commit with the following git commit message: `RELEASE CANDIDATE`. The build server will automatically take the changes and create an official release version artifacts (nexus release, git tagging, etc).
+This project is a cloud infrastructure based on the [spring-cloud](https://github.com/spring-cloud) projects.
 
-# Install RabbitMQ (Not needed if you follow the Docker installation steps)
-Download: [Download from RabbitMQ website](https://www.rabbitmq.com/download.html)
-For dev, it is recommended to keep guest/guest account and non-ssl.
-Configuration can be changed in *$ROOT/config/src/main/resources/cloud-configs/dev/application-dev.properties* if needed.
-Installation of RabbitMQ is not mandatory but it will greatly improve Server communication timings and websocket experience.
+# Contributing
 
-# Install Java Cryptography Extension (JCE) Unlimited Strength (used for OAuth2 Social Login strong encryption)
+Please see the [CONTRIBUTING](https://github.com/edud69/cloud-backend/blob/master/.github/CONTRIBUTING.md) file for guidelines.
+
+# Submitting an issue or feature request
+
+Please see the [ISSUES](https://github.com/edud69/cloud-backend/blob/master/.github/ISSUE_TEMPLATE.md) file for guidelines.
+
+# How to start
+## Install Java Cryptography Extension (JCE) Unlimited Strength (used for OAuth2 Social Login strong encryption)
 1. Download the Java JCE from oracle : [Oracle](http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html).
 2. Extract the files in *JDK_HOME/jre/lib/security* or *JRE_HOME/lib/security*.
 
-# Setting up the Project in an IDE
+## Setting up the Project in an IDE ##
 
 ### In Eclipse ###
 
