@@ -112,8 +112,20 @@ Note: Emma is installed by default on IntelliJ IDEA
 
 -Look at the `config-files` project `/dev-configs` folder for configuration files (sql init script, checkstyle file, maven file, etc.).
 
+Make sure you go over the [Defining the APIs keys](#defining-the-apis-keys) section.
 
 # Environment
+## Defining the APIs keys ##
+1. Navigate the `config-files/src/main/resources/cloud-configs/PROFILE_IN_USE(dev by default)/`.
+2. Search for all values with `**CHANGE_THIS**`.
+3. Replace the values found in 2. by an account that can access the API.
+```properties
+  spring.mail.host=mailtrap.io
+  spring.mail.port=2525
+  spring.mail.username=**CHANGE_THIS**
+  spring.mail.password=**CHANGE_THIS**
+```
+
 ## Arguments that can be defined provided to .jar (JVM arg -DtheProperty) ##
 
 - Use `--` as a prefix in front of any JVM argument instead of '-D', spring application will convert it to an argument. Ex: `--server.port=9000` or `--PORT=9000`
