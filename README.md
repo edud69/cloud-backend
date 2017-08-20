@@ -1,15 +1,5 @@
 [![CircleCI](https://circleci.com/gh/edud69/cloud-backend/tree/master.svg?style=svg)](https://circleci.com/gh/edud69/cloud-backend/tree/master)
 
-# Releasing an artifact
-
-Commit with the following git commit message: `RELEASE CANDIDATE`. The build server will automatically take the changes and create an official release version artifacts (nexus release, git tagging, etc).
-
-# Install RabbitMQ (Not needed if you follow the Docker installation steps)
-Download: [Download from RabbitMQ website](https://www.rabbitmq.com/download.html)
-For dev, it is recommended to keep guest/guest account and non-ssl.
-Configuration can be changed in *$ROOT/config/src/main/resources/cloud-configs/dev/application-dev.properties* if needed.
-Installation of RabbitMQ is not mandatory but it will greatly improve Server communication timings and websocket experience.
-
 # Install Java Cryptography Extension (JCE) Unlimited Strength (used for OAuth2 Social Login strong encryption)
 1. Download the Java JCE from oracle : [Oracle](http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html).
 2. Extract the files in *JDK_HOME/jre/lib/security* or *JRE_HOME/lib/security*.
