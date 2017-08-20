@@ -34,7 +34,10 @@ Coding tips:
 - [Creating a rest endpoint](#creating-a-rest-endpoint)
 - [JPA and multitenancy support](#jpa-and-multitenancy-support)
 
-  
+- [Architecture](#architecture)
+  + [Spring-cloud architecture overview](#spring-cloud-architecture-overview)
+  + [Micro-Service architecture overview](#micro-Service-architecture-overview)
+
 Related repositories:
 - [Frontend Sources](https://github.com/edud69/cloud-angular2-frontend)
 
@@ -317,57 +320,6 @@ public interface UserAuthenticationJpaSingleTenantRepository extends JpaSpringRe
 	private EntityManager em;
 ```
 
-# Keys to change outside dev env. #
-
-## application.properties ##
-
-Remove (if present):
-
-```
-#!properties
-
-eureka.instance.leaseRenewalIntervalInSeconds=2
-eureka.client.registryFetchIntervalSeconds=2
-ribbon.serverListRefreshInterval=2
-```
-
-Change:
-
-
-```
-#!properties
-
-app.cloud.security.oauth.client.internal.secret=dfs3@@Df21%!ssA3
-app.cloud.auth.specialUser.user.sub.password=98m!23i9i9sda%kd&
-spring.mail.host=mailtrap.io
-spring.mail.port=2525
-spring.mail.username=7c2050445fbd32
-spring.mail.password=6072f06968d8a9
-spring.mail.properties.mail.smtp.auth=true
-```
-
-
-## auth-service.properties ##
-
-Change:
-
-```
-#!properties
-
-
-app.cloud.security.oauth.jwt.privateKey.password=kjas3!gh4?213J
-app.cloud.security.oauth.jwt.privateKey.keystore.password=kjas3!gh4?213J
-app.cloud.security.oauth.encryptor.password=3j4@#$x!!!43s
-app.cloud.security.oauth.redirectUrl=http://localhost:84/
-app.cloud.security.oauth.applicationUrl=http://localhost:8080/api/auth/
-app.cloud.security.oauth.client.public.web.allowedOrigins=*
-spring.social.facebook.appId=618582951561087
-spring.social.facebook.appSecret=ea3841adadc84dc26a9c1f4f2b63f86c
-```
-
-
-Make sure all SQL and elasticsearch configs are up to date.
-
 # Architecture
 ## Database structure ##
 -Each micro-services that needs SQL should be structured as followed:
@@ -378,7 +330,7 @@ Make sure all SQL and elasticsearch configs are up to date.
 
 3. Several databases for tenant schema (tenant data), each of these database can contain a maximum amount of tenants (they are named *servicename_slaveXXX).
 
-## Cloud architecture overview ##
+## Spring-cloud architecture overview ##
 ![backend-architecture-high-lvl.png](https://bitbucket.org/repo/bX8krX/images/3911591992-backend-architecture-high-lvl.png)
 
 ## Micro-Service architecture overview ##
