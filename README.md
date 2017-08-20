@@ -236,7 +236,7 @@ When subscribing or sending message to a MQ destination the following prefix rul
 
 - Subscribing to a queue from client-side should look like */topic/tenant.tenant.TENANTID-TOPICNAME*
 
-## Send a message to a queue or topic from backend **
+## Send a message to a queue or topic from backend ##
 1. Inject the stomp service.
 ```java
   @Autowired
