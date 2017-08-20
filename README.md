@@ -1,10 +1,11 @@
 [![CircleCI](https://circleci.com/gh/edud69/cloud-backend/tree/master.svg?style=svg)](https://circleci.com/gh/edud69/cloud-backend/tree/master)
 
-# Install Java Cryptography Extension (JCE) Unlimited Strength (used for OAuth2 Social Login strong encryption)
+# How to start
+## Install Java Cryptography Extension (JCE) Unlimited Strength (used for OAuth2 Social Login strong encryption)
 1. Download the Java JCE from oracle : [Oracle](http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html).
 2. Extract the files in *JDK_HOME/jre/lib/security* or *JRE_HOME/lib/security*.
 
-# Setting up the Project in an IDE
+## Setting up the Project in an IDE ##
 
 ### In Eclipse ###
 
