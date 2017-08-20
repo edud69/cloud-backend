@@ -1,4 +1,16 @@
+# Introduction
+
 [![CircleCI](https://circleci.com/gh/edud69/cloud-backend/tree/master.svg?style=svg)](https://circleci.com/gh/edud69/cloud-backend/tree/master)
+
+This project is a cloud infrastructure based on the [spring-cloud](https://github.com/spring-cloud) projects.
+
+# Contributing
+
+Please see the [CONTRIBUTING](https://github.com/edud69/cloud-backend/blob/master/.github/CONTRIBUTING.md) file for guidelines.
+
+# Submitting an issue or feature request
+
+Please see the [ISSUES](https://github.com/edud69/cloud-backend/blob/master/.github/ISSUE_TEMPLATE.md) file for guidelines.
 
 # How to start
 ## Install Java Cryptography Extension (JCE) Unlimited Strength (used for OAuth2 Social Login strong encryption)
