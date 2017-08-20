@@ -1,4 +1,4 @@
-[![Build Status](https://build.theshire.io/buildStatus/icon?job=Backend%20Build)](https://build.theshire.io/job/Backend%20Build/)
+[![CircleCI](https://circleci.com/gh/edud69/cloud-backend/tree/master.svg?style=svg)](https://circleci.com/gh/edud69/cloud-backend/tree/master)
 
 # Releasing an artifact
 
