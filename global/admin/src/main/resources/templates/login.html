@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head lang="en">
+<title>The Shire Admin Panel</title>
+<link th:replace="/includes/common-header :: common-header" />
+</head>
+
+<body>
+	<div class="container">
+		<h1>Admin Login Panel</h1>
+		<div>
+			<span th:if="${badCreds}">BAD CREDENTIALS!</span>
+
+			<form name="f" th:action="${requestContextPath + 'signin'}"
+				method="post">
+				<fieldset>
+					<legend>Please Login</legend>
+					<label for="username">Username</label> <input type="text"
+						id="username" name="username" /> <label for="password">Password</label>
+					<input type="password" id="password" name="password" />
+					<div class="form-actions">
+						<button type="submit" class="btn">Log in</button>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

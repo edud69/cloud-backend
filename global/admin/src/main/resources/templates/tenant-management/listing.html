@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head lang="en">
+<title>The Shire Admin Panel</title>
+<link th:replace="/includes/common-header :: common-header" />
+</head>
+
+<body>
+	<div class="container">
+		<h1>Tenant Management</h1>
+
+		<div th:if="${error}" class="alert alert-danger">
+			<strong>Error </strong><span th:text="${error}"></span>
+		</div>
+		
+		<div th:if="${success}" class="alert-info">
+			<strong>Info </strong>Tenant is being created on other services, hit the refresh button to get the latest state.
+		</div>
+
+		<div class="container">
+			<a th:href="${requestContextPath}">Home</a> <a
+				th:href="${requestContextPath + 'tenant/list'}">Refresh</a>
+		</div>
+
+		<div class="container">
+			<form name="f" th:action="${requestContextPath + 'tenant/add'}"
+				method="post">
+				<fieldset>
+					<legend>Add New Tenant</legend>
+					<div class="form-actions">
+						<label for="tenantId">Tenant Name: </label> <input type="text"
+							id="tenantId" name="tenantId" />
+						<button type="submit" class="btn">Add</button>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+
+		<h2>Tenant listing</h2>
+		<table border="1">
+			<tr>
+				<th>Tenant ID</th>
+				<th th:each="serviceName : ${microServices}"><span
+					th:text="${serviceName}"></span></th>
+			</tr>
+			<tr th:each="tenantState : ${tenantStates}">
+				<th th:each="stateData,iterStat : ${tenantState}">
+					<div th:switch="${stateData}">
+						<div th:case="'UNCONFIGURED'">
+							<span style="color: red">Not Configured</span>
+							<form name="f"
+								th:action="${requestContextPath + 'tenant/initialize?tenant=' + tenantState[0] + '&amp;service=' + microServices[__${iterStat.index - 1}__]}"
+								method="post">
+								<fieldset>
+									<div class="form-actions">
+										<button type="submit" class="btn">Init</button>
+									</div>
+								</fieldset>
+							</form>
+						</div>
+						<span th:case="'CONFIGURED'" style="color: green">Ready</span> <span
+							th:case="*" th:text="${stateData}"></span>
+					</div>
+				</th>
+				<th>
+					<form name="f"
+						th:action="${requestContextPath + 'tenant/remove?tenant=' + tenantState[0]}"
+						method="post">
+						<fieldset>
+							<div class="form-actions">
+								<button type="submit" class="btn">Remove</button>
+							</div>
+						</fieldset>
+					</form>
+				</th>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

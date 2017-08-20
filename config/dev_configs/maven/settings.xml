@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<settings>
+
+  <mirrors>
+    <mirror>
+      <!--This sends everything else to /public -->
+      <id>public</id>
+      <mirrorOf>*</mirrorOf>
+      <url>https://build.theshire.io:8444/nexus/repository/maven-public/</url>
+    </mirror>
+  </mirrors>
+
+  <servers>
+    <server>
+        <id>public</id>
+        <username>YOUR_USER</username>
+        <password>YOUR_PASSWORD</password>
+    </server>
+    <server>
+        <id>snapshots</id>
+        <username>YOUR_USER</username>
+        <password>YOUR_PASSWORD</password>
+    </server>
+    <server>
+       <id>releases</id>
+        <username>YOUR_USER</username>
+        <password>YOUR_PASSWORD</password>
+    </server>
+  </servers>
+
+  <profiles>
+    <profile>
+      <id>nexus</id>
+      <!--Enable snapshots for the built in central repo to direct -->
+      <!--all requests to nexus via the mirror -->
+      <repositories>
+        <repository>
+          <id>snapshots</id>
+          <url>https://build.theshire.io:8444/nexus/repository/maven-snapshots/</url>
+          <releases><enabled>false</enabled></releases>
+          <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+        <repository>
+          <id>releases</id>
+          <url>https://build.theshire.io:8444/nexus/repository/maven-releases/</url>
+          <releases><enabled>false</enabled></releases>
+          <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+      </repositories>
+
+     <pluginRepositories>
+        <pluginRepository>
+          <id>release</id>
+          <url>https://build.theshire.io:8444/nexus/repository/maven-snapshots/</url>
+          <releases><enabled>false</enabled></releases>
+          <snapshots><enabled>true</enabled></snapshots>
+        </pluginRepository>
+        <pluginRepository>
+          <id>releases</id>
+          <url>https://build.theshire.io:8444/nexus/repository/maven-releases/</url>
+          <releases><enabled>true</enabled></releases>
+          <snapshots><enabled>false</enabled></snapshots>
+        </pluginRepository>
+      </pluginRepositories>
+
+    </profile>
+  </profiles>
+
+  <activeProfiles>
+    <!--make the profile active all the time -->
+    <activeProfile>nexus</activeProfile>
+  </activeProfiles>
+
+</settings>

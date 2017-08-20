@@ -1,0 +1,17 @@
+# Spring properties
+spring:
+  application:
+     name: admin-panel
+  profiles:
+    active: dev
+  cloud:
+    config:
+       discovery:
+          enabled: true
+          serviceId: config-service
+
+# Discovery Server Access
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${REGISTRY_SERVER_URI:http://localhost:1111/eureka/}

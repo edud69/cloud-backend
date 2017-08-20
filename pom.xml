@@ -1,0 +1,484 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.2.RELEASE</version>
+	</parent>
+
+	<groupId>io.theshire</groupId>
+	<artifactId>parent</artifactId>
+	<version>1.0.248-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>parent</name>
+	<url>http://theshire.io/</url>
+
+	<ciManagement>
+		<system>Jenkins</system>
+		<url>https://build.theshire.io/</url>
+	</ciManagement>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<!-- PLUGIN VERSIONS -->
+		<maven.compiler-plugin.version>3.6.2</maven.compiler-plugin.version>
+		<maven.assembly-plugin.version>3.0.0</maven.assembly-plugin.version>
+		<maven.jar-plugin.version>3.0.2</maven.jar-plugin.version>
+		<maven.release-plugin.version>2.5.3</maven.release-plugin.version>
+		<maven.jxr-plugin.version>2.5</maven.jxr-plugin.version>
+		<maven.pmd-plugin.version>3.8</maven.pmd-plugin.version>
+		<maven.findbugs-plugin.version>3.0.4</maven.findbugs-plugin.version>
+		<maven.checkstyle-plugin.version>2.17</maven.checkstyle-plugin.version>
+		<maven.jacoco-plugin.version>0.7.9</maven.jacoco-plugin.version>
+		<maven.build-helper-plugin.version>3.0.0</maven.build-helper-plugin.version>
+		<maven.javadoc-plugin.version>2.10.4</maven.javadoc-plugin.version>
+		<maven.lifecycle-mapping.version>1.0.0</maven.lifecycle-mapping.version>
+
+		<!-- 3RD PARTY LIB VERSIONS -->
+		<lombok.version>1.16.18</lombok.version>
+		<commons.lang3.version>3.6</commons.lang3.version>
+		<commons.validator.version>1.6</commons.validator.version>
+		<spring.cloud.version>Dalston.SR2</spring.cloud.version>
+		<spring.social.google.version>1.0.0.RELEASE</spring.social.google.version>
+
+		<hibernate.jpa2-1-api.version>1.0.0.Final</hibernate.jpa2-1-api.version>
+
+		<javax.interceptor-api.version>1.2.1</javax.interceptor-api.version>
+		<javax.validation-api.version>2.0.0.Final</javax.validation-api.version>
+		<postgresql.version>42.1.4</postgresql.version>
+		<flywaydb.version>4.2.0</flywaydb.version>
+		<net.java.dev.jna.version>4.4.0</net.java.dev.jna.version>
+
+		<junit.version>4.12</junit.version>
+		<powermock.version>1.6.4</powermock.version>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>build</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>static-analysis</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-pmd-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>findbugs-maven-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-checkstyle-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>dev-build</id>
+		</profile>
+	</profiles>
+
+	<modules>
+		<module>modules/common</module>
+		<module>modules/account</module>
+		<module>modules/document</module>
+		<module>modules/chat</module>
+		<module>global/turbine-server</module>
+		<module>global/config-server</module>
+		<module>global/registry-server</module>
+		<module>global/authorization-server</module>
+		<module>global/gateway-server</module>
+		<module>global/admin</module>
+		<module>migration-utility</module>
+		<module>config</module>
+	</modules>
+
+	<scm>
+		<connection>scm:git:git@bitbucket.org:the-shire/backend.git</connection>
+		<developerConnection>scm:git:git@bitbucket.org:the-shire/backend.git</developerConnection>
+		<url>https://bitbucket.org/the-shire/backend</url>
+		<tag>parent-1.0.127</tag>
+	</scm>
+
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<name>Releases Repository</name>
+			<url>https://build.theshire.io:8444/nexus/repository/maven-releases/</url>
+		</repository>
+
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>Snapshots Repository</name>
+			<url>https://build.theshire.io:8444/nexus/repository/maven-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- SPRING FRAMEWORK -->
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring.cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.social</groupId>
+				<artifactId>spring-social-google</artifactId>
+				<version>${spring.social.google.version}</version>
+			</dependency>
+
+			<!-- HIBERNATE -->
+			<dependency>
+				<groupId>org.hibernate.javax.persistence</groupId>
+				<artifactId>hibernate-jpa-2.1-api</artifactId>
+				<version>${hibernate.jpa2-1-api.version}</version>
+			</dependency>
+
+			<!-- UTILS -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons.lang3.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-validator</groupId>
+				<artifactId>commons-validator</artifactId>
+				<version>${commons.validator.version}</version>
+			</dependency>
+
+			<!-- SQL -->
+			<dependency>
+				<groupId>org.postgresql</groupId>
+				<artifactId>postgresql</artifactId>
+				<version>${postgresql.version}</version>
+			</dependency>
+
+			<!-- LOMBOK -->
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${lombok.version}</version>
+			</dependency>
+
+			<!-- FLYWAY DB -->
+			<dependency>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-core</artifactId>
+				<version>${flywaydb.version}</version>
+			</dependency>
+
+			<!-- JNA -->
+			<dependency>
+				<groupId>net.java.dev.jna</groupId>
+				<artifactId>jna</artifactId>
+				<version>${net.java.dev.jna.version}</version>
+			</dependency>
+
+			<!-- JUNIT -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+			</dependency>
+
+			<!-- POWER MOCK -->
+			<dependency>
+				<groupId>org.powermock</groupId>
+				<artifactId>powermock-module-junit4</artifactId>
+				<version>${powermock.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.powermock</groupId>
+				<artifactId>powermock-api-mockito</artifactId>
+				<version>${powermock.version}</version>
+			</dependency>
+
+			<!-- JAVAX -->
+			<dependency>
+				<groupId>javax.interceptor</groupId>
+				<artifactId>javax.interceptor-api</artifactId>
+				<version>${javax.interceptor-api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.validation</groupId>
+				<artifactId>validation-api</artifactId>
+				<version>${javax.validation-api.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.interceptor</groupId>
+			<artifactId>javax.interceptor-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-api-mockito</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${maven.jar-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>${maven.assembly-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven.compiler-plugin.version}</version>
+					<configuration>
+						<compilerVersion>${java.version}</compilerVersion>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>${maven.release-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>build-helper-maven-plugin</artifactId>
+					<version>${maven.build-helper-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<configuration>
+						<layout>ZIP</layout>
+					</configuration>
+					<executions>
+						<execution>
+							<goals>
+								<goal>repackage</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jxr-plugin</artifactId>
+					<version>${maven.jxr-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-pmd-plugin</artifactId>
+					<version>${maven.pmd-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>verify</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>pmd</goal>
+								<goal>cpd</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>${maven.jacoco-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>default-prepare-agent</id>
+							<goals>
+								<goal>prepare-agent</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>report</id>
+							<goals>
+								<goal>report</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>findbugs-maven-plugin</artifactId>
+					<version>${maven.findbugs-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>verify</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>findbugs</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-checkstyle-plugin</artifactId>
+					<version>${maven.checkstyle-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>validate</id>
+							<phase>validate</phase>
+							<configuration>
+								<configLocation>google_checks.xml</configLocation>
+								<encoding>UTF-8</encoding>
+								<consoleOutput>true</consoleOutput>
+								<linkXRef>false</linkXRef>
+							</configuration>
+							<goals>
+								<goal>checkstyle</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${maven.javadoc-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>attach-javadocs</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+							<configuration>
+								<additionalparam>-Xdoclint:none</additionalparam>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>${maven.lifecycle-mapping.version}</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-pmd-plugin</artifactId>
+										<versionRange>[${maven.pmd-plugin.version},)</versionRange>
+										<goals>
+											<goal>pmd</goal>
+											<goal>cpd</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId>findbugs-maven-plugin</artifactId>
+										<versionRange>[${maven.findbugs-plugin.version},)</versionRange>
+										<goals>
+											<goal>findbugs</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-checkstyle-plugin</artifactId>
+										<versionRange>[${maven.checkstyle-plugin.version},)</versionRange>
+										<goals>
+											<goal>checkstyle</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>${maven.pmd-plugin.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>${maven.findbugs-plugin.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>${maven.checkstyle-plugin.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+				<version>${maven.jxr-plugin.version}</version>
+			</plugin>
+		</plugins>
+	</reporting>
+</project>

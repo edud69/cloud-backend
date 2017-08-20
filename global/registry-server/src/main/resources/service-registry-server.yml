@@ -1,0 +1,29 @@
+spring:
+  profiles:
+    active: dev
+
+
+# SERVER CONFIG
+server:
+  port: ${PORT:1111}   # HTTP (Tomcat) port
+info:
+  component: Registry Server
+
+# LOGGIN CONFIG
+---
+spring:
+  profiles: prod
+logging:
+  file: logs/registry-server.log
+  level:
+    root: WARN
+    org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer: INFO
+    com.netflix.eureka.InstanceRegistry: INFO
+    com.netflix.discovery.DiscoveryClient: INFO
+    io.theshire.sr.server: INFO
+---
+spring:
+  profiles: dev
+logging:
+  level:
+    root: INFO

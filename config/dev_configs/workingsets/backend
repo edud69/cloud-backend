@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workingSets>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1469295274711_3" label="Account-Microservice" name="Account-Microservice">
+<item elementID="=account-endpoint" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=account-domain" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/account-parent" type="4"/>
+<item elementID="=account-server" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=account-service" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1469295297903_4" label="Admin-Microservice" name="Admin-Microservice">
+<item elementID="=admin-server" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=admin-domain" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=admin-service" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=admin-endpoint" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/admin-parent" type="4"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1469295323311_5" label="Authorization-Microservice" name="Authorization-Microservice">
+<item elementID="=authorization-server" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1469295341031_6" label="Chat-Microservice" name="Chat-Microservice">
+<item elementID="=chat-server" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=chat-endpoint" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=chat-service" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=chat-domain" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/chat-parent" type="4"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1469295249095_2" label="Common" name="Common">
+<item elementID="=common-websocket" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=common-domain" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/common-parent" type="4"/>
+<item elementID="=common-endpoint" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=common-server" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=common-service" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=common-utils" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1469295435966_11" label="Config-Server" name="Config-Server">
+<item elementID="=config-server" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" id="1469295508086_13" label="Configurations" name="Configurations">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/config-files" type="4"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1469295488926_12" label="Dev-Utilities" name="Dev-Utilities">
+<item elementID="=migration-utility" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=servers-monitor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/dev-utils-parent" type="4"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1469295362374_7" label="Document-Microservice" name="Document-Microservice">
+<item elementID="=document-domain" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=document-service" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/document-parent" type="4"/>
+<item elementID="=document-server" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=document-endpoint" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1469295384047_8" label="Edge-Server" name="Edge-Server">
+<item elementID="=gateway-server" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" id="1469275504328_1" label="parent" name="parent">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/registry-server" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/parent" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/common-websocket" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/document-service" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/config-files" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/document-parent" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/config-server" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/common-endpoint" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/gateway-server" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/common-service" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/account-server" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/migration-utility" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/chat-parent" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/chat-server" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/document-domain" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/account-endpoint" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/common-parent" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/common-server" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/common-utils" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/admin-service" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/admin-parent" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/admin-endpoint" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/admin-server" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/common-domain" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/document-server" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/account-parent" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/admin-domain" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/authorization-server" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/account-domain" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/chat-endpoint" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/chat-service" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/account-service" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/chat-domain" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/turbine-server" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/document-endpoint" type="4"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1469295399463_9" label="Registry-Server" name="Registry-Server">
+<item elementID="=registry-server" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1469295415902_10" label="Turbine-Server" name="Turbine-Server">
+<item elementID="=turbine-server" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+</workingSets>

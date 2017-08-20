@@ -1,0 +1,15 @@
+# HTTP Server
+server:
+  port: ${PORT:14900}   # HTTP (Tomcat) port
+info:
+  component: Admin Panel
+spring:
+  thymeleaf:
+    prefix: classpath:/templates
+
+# LOGGIN CONFIG
+---
+spring:
+  profiles: prod
+logging:
+  file: logs/admin-server.log

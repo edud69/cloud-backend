@@ -1,0 +1,16 @@
+# HTTP Server
+server:
+  port: ${PORT:17501}   # HTTP (Tomcat) port
+info:
+  component: Authorization Service
+
+endpoints:
+  health:
+    sensitive: false
+
+# LOGGIN CONFIG
+---
+spring:
+  profiles: prod
+logging:
+  file: logs/auth-server.log

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head lang="en">
+<title>The Shire Admin Panel</title>
+<link th:replace="/includes/common-header :: common-header" />
+</head>
+
+<body>
+	<div class="container">
+		<h1>Admin Panel</h1>
+
+		<h2>Links</h2>
+		<div>
+			<a th:href="${requestContextPath + 'hystrix-dashboard-with-stream'}">Hystrix
+				Dashboard</a>
+		</div>
+		<div>
+			<a th:href="${requestContextPath + 'eureka'}">Eureka Dashboard</a>
+		</div>
+		<div>
+			<a th:href="${requestContextPath + 'tenant/list'}">Tenant
+				Management</a>
+		</div>
+
+		<form name="logoutForm" th:action="${requestContextPath + 'signout'}"
+			method="post">
+			<fieldset>
+				<legend>Logout</legend>
+				<div class="form-actions">
+					<button type="submit" class="btn">Log out</button>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</body>
+</html>

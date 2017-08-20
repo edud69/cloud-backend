@@ -1,0 +1,9 @@
+spring:
+  application:
+     name: config-service
+
+# DISCOVERY SERVER ACCESS
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${REGISTRY_SERVER_URI:http://localhost:1111/eureka/}

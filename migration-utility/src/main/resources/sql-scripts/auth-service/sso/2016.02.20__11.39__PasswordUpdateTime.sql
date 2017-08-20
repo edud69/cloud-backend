@@ -1,0 +1,1 @@
+ALTER TABLE users ADD COLUMN password_update_time timestamp without time zone;

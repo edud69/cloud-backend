@@ -1,21 +1,43 @@
-spring:  
+spring:
   profiles:
-    active: native
+    active: native,dev
+
+endpoints:
+  health:
+    sensitive: false
+management:
+  security:
+    enabled: false
+
+
+# HTTP SERVER CONFIG
+server:
+  port: ${PORT:8888}   # HTTP (Tomcat) port
+info:
+  component: Config Server
+
+
+# LOGGING CONFIG
+---
+spring:
+  profiles: prod
+logging:
+  file: logs/config-server.log
+  level:
+    root: WARN
+    org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer: INFO
+    com.netflix.discovery.DiscoveryClient: INFO
+    io.theshire.config.server: INFO
+
+
+# CLOUD SERVICES CONFIGURATION FILE LOCATIONS
+---
+spring:
   cloud:
     config:
       server:
         native: 
-          searchLocations: ${CONFIG_FILE_LOC:classpath:cloud-configs/}
-          
-  application:
-     name: config-service
-
-# Discovery Server Access
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: ${app.cloud.defaultZone}
-
-# HTTP Server
-server:
-  port: ${PORT:8888}   # HTTP (Tomcat) port
+          searchLocations: >
+            ${CONFIG_FILES_ROOT_LOC:classpath:cloud-configs},
+            ${CONFIG_FILES_ROOT_LOC:classpath:cloud-configs}/dev,
+            ${CONFIG_FILES_ROOT_LOC:classpath:cloud-configs}/prod

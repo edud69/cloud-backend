@@ -1,0 +1,20 @@
+# HTTP Server
+server:
+  port: ${PORT:29501}   # HTTP (Tomcat) port
+info:
+  component: Turbine Server
+
+# TURBINE CONFIG
+---
+turbine:
+  appConfig: ${app.cloud.turbine.watched.services}
+  clusterNameExpression: new String('default')
+  stream:
+    port: 8989
+
+# LOGGIN CONFIG
+---
+spring:
+  profiles: prod
+logging:
+  file: logs/turbine-server.log

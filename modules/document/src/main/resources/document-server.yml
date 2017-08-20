@@ -1,0 +1,12 @@
+# HTTP Server
+server:
+  port: ${PORT:17503}   # HTTP (Tomcat) port
+info:
+  component: Document Service
+
+# LOGGIN CONFIG
+---
+spring:
+  profiles: prod
+logging:
+  file: logs/document-server.log

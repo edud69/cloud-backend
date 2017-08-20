@@ -1,0 +1,1 @@
+UPDATE document_templates set template_key = 'template.email.user.lostPassword' where template_key = 'app.cloud.mail.user.lostPassword.templateKey'

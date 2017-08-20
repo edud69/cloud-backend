@@ -1,0 +1,6 @@
+/.project
+/target/
+
+# JetBrains IntelliJ IDEA
+**/*.iml
+.idea

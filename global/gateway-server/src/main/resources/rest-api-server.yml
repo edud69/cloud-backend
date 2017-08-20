@@ -1,0 +1,39 @@
+# HTTP Server
+server:
+  port: ${PORT:8080}   # HTTP (Tomcat) port
+info:
+  component: Edge Loadbalancer
+
+# ZUUL Proxy
+# Services Routes
+zuul:
+  ignoredServices: '*'
+  ignoredPatterns: /ws/**
+  routes:
+    admin:
+      path: /admin/**
+      serviceId: admin-panel
+      sensitiveHeaders: ''
+    auth:
+      path: /api/${app.cloud.rest.api.authservice.version}/auth/**
+      serviceId: auth-service
+      sensitiveHeaders: Cookie,Set-Cookie
+    account:
+      path: /api/${app.cloud.rest.api.accountservice.version}/account/**
+      serviceId: account-service
+      sensitiveHeaders: Cookie,Set-Cookie
+    chat:
+      path: /api/${app.cloud.rest.api.chatservice.version}/chat/**
+      serviceId: chat-service
+      sensitiveHeaders: Cookie,Set-Cookie
+    document:
+      path: /api/${app.cloud.rest.api.documentservice.version}/document/**
+      serviceId: document-service
+      sensitiveHeaders: Cookie,Set-Cookie
+
+# LOGGIN CONFIG
+---
+spring:
+  profiles: prod
+logging:
+  file: logs/gateway-server.log

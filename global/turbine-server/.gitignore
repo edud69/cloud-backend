@@ -1,0 +1,7 @@
+/target/
+/.classpath
+/.project
+/data/
+/transaction-logs/
+/169.254.80.80.tm6.epoch
+/tmlog.lck

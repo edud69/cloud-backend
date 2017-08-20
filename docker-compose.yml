@@ -1,0 +1,154 @@
+version: '3.3'
+
+services:
+
+  # INFRASTRUCTURE
+  docker-sql:
+    hostname: docker-sql
+    image: postgres
+    ports:
+      - "5432:5432"
+      
+  docker-migrate-sql:
+    build: ./migration-utility
+    image: theshire:migration-utility
+    links:
+      - docker-sql
+      
+  docker-sql-admin:
+    image: adminer
+    ports:
+      - "8081:8080"
+
+  docker-rabbitmq:
+    hostname: docker-rabbitmq
+    image: rabbitmq:3-management
+    environment: 
+      RABBITMQ_DEFAULT_PASS: rmqadmin
+      RABBITMQ_DEFAULT_USER: rmqadmin
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  # GLOBAL SERVICES
+  docker-registry:
+    hostname: docker-registry
+    build: ./global/registry-server
+    image: theshire:docker-registry
+    environment:
+      - JAVA_OPTS=-Xmx50m
+      - REGISTRY_URL=http://docker-registry:1111/eureka
+    links:
+      - docker-rabbitmq
+    ports:
+      - "1111:1111"
+      
+  docker-config:
+    hostname: docker-config
+    build:
+      context: .
+      dockerfile: global/config-server/Dockerfile
+    image: theshire:docker-config
+    environment:
+      - JAVA_OPTS=-Xmx50m
+      - REGISTRY_URL=http://docker-registry:1111/eureka
+    links:
+      - docker-registry
+    ports:
+      - "8888:8888"
+         
+  docker-turbine:
+    hostname: docker-turbine
+    build: ./global/turbine-server
+    image: theshire:docker-turbine
+    environment:
+      - JAVA_OPTS=-Xmx50m
+      - REGISTRY_URL=http://docker-registry:1111/eureka
+    links:
+      - docker-registry
+      - docker-config
+    ports:
+      - "29501:29501"
+      - "8989:8989"
+         
+  docker-auth-service:
+    hostname: docker-auth-service
+    build: ./global/authorization-server
+    image: theshire:docker-auth-service
+    environment:
+      - JAVA_OPTS=-Xmx200m
+      - REGISTRY_URL=http://docker-registry:1111/eureka
+    links:
+      - docker-sql
+      - docker-registry
+      - docker-config
+    ports:
+      - "17501:17501"   
+         
+  docker-gateway:
+    hostname: docker-gateway
+    build: ./global/gateway-server
+    image: theshire:docker-gateway
+    environment:
+      - JAVA_OPTS=-Xmx50m
+      - REGISTRY_URL=http://docker-registry:1111/eureka
+    links:
+      - docker-turbine
+      - docker-auth-service
+    ports:
+      - "8080:8080"
+             
+  docker-admin:
+    hostname: docker-admin
+    build: ./global/admin
+    image: theshire:docker-admin
+    environment:
+      - JAVA_OPTS=-Xmx200m
+      - REGISTRY_URL=http://docker-registry:1111/eureka
+    links:
+      - docker-auth-service
+    ports:
+      - "14900:14900"
+      
+      
+  #SERVICES
+  docker-account-service:
+    hostname: docker-account-service
+    build: ./modules/account
+    image: theshire:docker-account-service
+    links:
+      - docker-auth-service
+    environment:
+      - JAVA_OPTS=-Xmx100m
+      - REGISTRY_URL=http://docker-registry:1111/eureka
+    ports:
+      - "17502:17502"
+ 
+  docker-document-service:
+    hostname: docker-document-service
+    build: ./modules/document
+    image: theshire:docker-document-service
+    links:
+      - docker-auth-service
+    environment:
+      - JAVA_OPTS=-Xmx100m
+      - REGISTRY_URL=http://docker-registry:1111/eureka
+    ports:
+      - "17503:17503"
+ 
+  docker-chat-service:
+    hostname: docker-chat-service
+    build: ./modules/chat
+    image: theshire:docker-chat-service
+    links:
+      - docker-auth-service
+    environment:
+      - JAVA_OPTS=-Xmx100m
+      - REGISTRY_URL=http://docker-registry:1111/eureka
+    ports:
+      - "17504:17504"
+      
+      
+      
+      
+      
