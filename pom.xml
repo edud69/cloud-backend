@@ -110,9 +110,9 @@
 	</modules>
 
 	<scm>
-		<connection>scm:git:git@bitbucket.org:the-shire/backend.git</connection>
-		<developerConnection>scm:git:git@bitbucket.org:the-shire/backend.git</developerConnection>
-		<url>https://bitbucket.org/the-shire/backend</url>
+		<connection>scm:git:git@github.com:edud69/cloud-backend</connection>
+		<developerConnection>scm:git:git@github.com:edud69/cloud-backend.git</developerConnection>
+		<url>https://github.com/edud69/cloud-backend</url>
 		<tag>parent-1.0.127</tag>
 	</scm>
 
