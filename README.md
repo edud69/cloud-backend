@@ -123,6 +123,7 @@ The project is supports Docker containers. You can launch the whole project by d
 
 - RabbitMQ management : http://localhost:15672
 - Sql management : http://localhost:8081
+- Sql server : http://localhost:5432
 - Rest-api : http://localhost:8080
 
 ## Debugging a service locally with a Docker setup running ##
