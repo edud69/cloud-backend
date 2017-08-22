@@ -25,7 +25,11 @@ Please see the [ISSUES](https://github.com/edud69/cloud-backend/blob/master/.git
   
 Coding tips:
 - [Adding a new micro-service](#adding-a-new-micro-service)
-- [Running the migration utility](#running-the-migration-utility)
+- [Database migration](#database-migration)
+  + [Running the migration utility](#running-the-migration-utility)
+  + [Script for dev environment](#script-for-dev-environment)
+  + [Add a new migration script](#add-a-new-migration-script)
+  + [Editing the security matrix](#editing-the-security-matrix)
 - [Websockets](#websockets)
   + [Adding websocket support](#adding-websocket-support)
   + [Monitoring websocket client connections](#monitoring-websocket-client-connections)
@@ -190,12 +194,40 @@ The project is supports Docker containers. You can launch the whole project by d
 
 12) Configure the `docker-compose.prod.yml` file.
 
-
-# Running the migration utility
+# Database migration
+## Running the migration utility ##
 
 - Create a simple java application launcher on the main of the Launcher class of migration-utility project.
 - Provide the following arguments `mainDbUsername mainDbPassword dbDataEncryptionKey (optional: devModeEnabled)` (by default for dev use: `postgres postgres ddfds283nsdjahs (optional : devModeEnabled -> this option will execute dev scripts to setup dev env)`).
 * Here the value `ddfds283nsdjahs` must `match the app.cloud.security.database.encryption.key` from the `application-dev.properties` file (found in config-giles/src/main/resources/cloud-configs/).
+
+## Script for dev environment ##
+It is possible to execute scripts dedicated for dev environment. The migration-utility will execute the scripts only in devmode.
+To add a new script go to  `migration-utility/src/main/resources/sql-dev-scripts/`. Add your script to an existing `.sql` file or add a new file and put your script there.
+
+## Add a new migration script ##
+To add a new migration SQL script, you can go to `migration-utility/src/main/resources/sql-scripts`.
+You will find a list of folders there, each of them represents the script for the different components of the application.
+
+If you go deeper in the directory structure:
+```
+.
+├── admin-service/ <- scripts for the administrative panel
+├── auth-service/ <- scripts for the authorization / authentication component
+│   ├── configurations/  <- scripts for the configuration schema
+│   ├── sso/  <- scripts for sso schema
+│   └── template/   <- scripts applied to all tenant database and the template for tenant creation
+├── micro-services/  <- docker-compose file for production environment
+│   ├── micro-service-name/  <- scripts for the micro-service
+│   |   ├── configurations/  <- scripts for the configuration schema
+│   |   └── template/   <- scripts applied to all tenant database and the template for tenant creation
+...
+```
+
+Adding a new script must follow the following convention: `YYYY.MM.DD_HH.MM__ScriptDescription.sql`.
+
+## Editing the security matrix ##
+If you want to change/add or remove a role/permission, you can browse the `migration-utility/src/main/resources/security/roles_permissions-mapper.csv` and edit the .csv file.
 
 # Websockets #
 ## Adding websocket support ##
