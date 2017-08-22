@@ -68,48 +68,7 @@ Note: Emma is installed by default on IntelliJ IDEA
 2. Install PMDPlugin
 3. Install Findbugs-IDEA
 4. Install the [Lombok plug-in by Michail Plushnikov](https://github.com/mplushnikov/lombok-intellij-plugin)
-4. Import CheckStyle XML config (Failed! TODO: resolve issue)
-5. Create the following databases in PostgreSQL 9.5 (postgres/postgres):
-    * authentication_master
-    * document_master
-    * account_master
-6. Clone the backend repository somewhere, and open in IntelliJ IDEA
-7. Create a new Maven configuration, to build all the projects:
-    * **Name**: Build (ALL)
-    * **Working directory**: `<your backend root folder>`
-    * **Command line**: `clean install`
-8. Run the new Maven configuration "Build (ALL)"
-9. Create a new Application Configuration, to migrate the database:
-    * **Name**: Database migration
-    * **Main class**: `io.theshire.migration.Launcher`
-    * **Program arguments**: `postgres postgres ddfds283nsdjahs (optional : devModeEnabled -> this option will execute dev scripts to setup dev env)`
-    * **Working directory**: `<your backend root folder>\migration-utility`
-    * **Use classpath of module**: `migration-utility`
-10. Run the Application Configuration "Database migration"
-11. Follow the procedure described in the SQL scripts:
-    * `<your backend root folder>\config\dev_configs\dev_sql_scripts\init_scripts.sql`
-12. Create 4 new Maven configurations:
-    * Registration server:
-        * **Name**: Registration server
-        * **Working directory**: `<your backend root folder>\global\registry-server`
-        * **Command line**: `spring-boot:run`
-    * Configuration server:
-        * **Name**: Configuration server
-        * **Working directory**: `<your backend root folder>\global\config-server`
-        * **Command line**: `spring-boot:run`
-    * Gateway server:
-        * **Name**: Gateway server
-        * **Working directory**: `<your backend root folder>\global\gateway-server`
-        * **Command line**: `spring-boot:run`
-    * Authorization server:
-        * **Name**: Authorization server
-        * **Working directory**: `<your backend root folder>\global\authorization-server`
-        * **Command line**: `spring-boot:run`
-13. Launch the 4 new Maven configurations in the following order:
-    * Registration server
-    * Configuration server
-    * Gateway server
-    * Authorization server
+5. Import CheckStyle XML config (Failed! TODO: resolve issue)
     
 ### Formatter file / checkstyle file and other configuration files for dev ###
 
