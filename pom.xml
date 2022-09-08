@@ -72,7 +72,7 @@
 
 		<javax.interceptor-api.version>1.2.1</javax.interceptor-api.version>
 		<javax.validation-api.version>2.0.0.Final</javax.validation-api.version>
-		<postgresql.version>42.1.4</postgresql.version>
+		<postgresql.version>42.4.1</postgresql.version>
 		<flywaydb.version>4.2.0</flywaydb.version>
 		<net.java.dev.jna.version>4.4.0</net.java.dev.jna.version>
 
