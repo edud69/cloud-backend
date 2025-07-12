@@ -63,7 +63,7 @@
 
 		<!-- 3RD PARTY LIB VERSIONS -->
 		<lombok.version>1.16.18</lombok.version>
-		<commons.lang3.version>3.6</commons.lang3.version>
+		<commons.lang3.version>3.18.0</commons.lang3.version>
 		<commons.validator.version>1.6</commons.validator.version>
 		<spring.cloud.version>Dalston.SR2</spring.cloud.version>
 		<spring.social.google.version>1.0.0.RELEASE</spring.social.google.version>
